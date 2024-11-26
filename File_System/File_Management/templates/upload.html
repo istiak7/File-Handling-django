@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+    <title>Upload File</title>
+</head>
+<body>
+    <h1>Upload File </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    <h1>Uploaded Files</h1>
+    <ul>
+        {% for doccument in doccuments %}
+            <li>
+                {{doccument.title}} - <a href="{{doccument.file.url}}">Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p style="text-align: center;">Copyright:{{ copyright_info }}</p>
+</body>
+</html>
